@@ -5,7 +5,34 @@
   <annotation></annotation>
   <name>rng</name>
   <categories/>
-  <inputs/>
+  <inputs>
+    <staticBinding id="c2c05306-f3c9-4875-913a-6679e6b3990f">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>min</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>1111111111111111111111</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="694cf772-ad37-4833-a231-3d897ccecf46">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>max</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>9999999999999999999999</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
   <possibleResponses>
     <opResponse id="c487cb76-0620-4666-9173-e59f6185516e">
       <annotation></annotation>
@@ -24,7 +51,15 @@
       <matchRules/>
     </opResponse>
   </possibleResponses>
-  <availableResultExpressions/>
+  <availableResultExpressions>
+    <expression id="3a07bf6e-c0cd-470c-a6c7-0f33771c46c2">
+      <annotation></annotation>
+      <name>outputM</name>
+      <fieldName>FailureMessage</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
   <resultExpression id="97b85be3-84cb-4a96-9af3-93f415cfb98b">
     <annotation></annotation>
     <name>FailureMessage</name>
@@ -65,22 +100,20 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="5a932364-3d36-4df2-8b09-2deb3df02a08">
+        <staticBinding id="575f884c-938c-40fb-b324-8f302631d352">
           <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>true</required>
           <isPersisted>true</isPersisted>
           <inputSymbol>max</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value>999999999</value>
           <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <userInputBinding id="2bc1095e-f007-45e6-86ba-ad1ff3eb74da">
+        </staticBinding>
+        <staticBinding id="e895b61a-daf7-46ee-8760-7b5476f51262">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -90,11 +123,9 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>min</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value>199999999</value>
           <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
+        </staticBinding>
       </bindings>
       <transitions>
         <transition id="582ebedc-9c44-4c12-b858-b78f00dd8fb2">
@@ -160,7 +191,235 @@
       <opRef>
         <refId>2c22355a-9c26-4a9e-893c-01a35e4bb0e3</refId>
       </opRef>
-      <assignments/>
+      <assignments>
+        <flowVariableAssignment id="698796df-cee5-44f4-a592-937476ec9629">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>generatedNumber</contextKey>
+          <expression id="d063ccf4-b1b2-4902-a744-a3728cd4bbde">
+            <annotation></annotation>
+            <name>Result Field: returnResult</name>
+            <fieldName>returnResult</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters>
+              <numberFilter id="9eba0974-4f5a-4cbb-8b97-7de4544d64df">
+                <annotation></annotation>
+                <name>Extract Number</name>
+              </numberFilter>
+              <concat id="eb6f96fb-0f38-427f-a29d-b8408ca9dda8">
+                <annotation></annotation>
+                <name>Format</name>
+                <text>number-</text>
+                <position>BEGINNING</position>
+              </concat>
+              <replaceAllFilter id="09e7a0cd-ddd5-4e44-8e12-62475cea6eee">
+                <annotation></annotation>
+                <name>Replace</name>
+                <ignoreCase>true</ignoreCase>
+                <searchString>9</searchString>
+                <replaceString>3</replaceString>
+                <replaceType>ALL</replaceType>
+              </replaceAllFilter>
+              <roundingFilter id="301779e5-6804-413d-a432-12afddcea3cd">
+                <annotation></annotation>
+                <name>Round Number</name>
+                <numPlaces>0</numPlaces>
+                <ceiling>false</ceiling>
+                <floor>false</floor>
+                <round>true</round>
+              </roundingFilter>
+              <stripWhitespaceFilter id="38f39334-6d3e-4393-af93-1d3e616902c1">
+                <annotation></annotation>
+                <name>Strip Whitespace</name>
+              </stripWhitespaceFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="6acae822-e717-484f-b332-11b4a6204d35">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>generatedNumber</contextKey>
+          <expression id="0d9f0aa4-affb-47dc-8eed-77b6b9eec3e3">
+            <annotation></annotation>
+            <name>Result Field: returnResult</name>
+            <fieldName>returnResult</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0f7308f3-dc57-486d-9eb4-0e1d162a8bc2">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>response</contextKey>
+          <expression id="03b6170c-6eec-472e-85a1-2a01e65fe781">
+            <annotation></annotation>
+            <name>Result Field: response</name>
+            <fieldName>response</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="d51be926-5733-4fa9-aa8e-379784d22d2d">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>exception</contextKey>
+          <expression id="d6c8d43b-06bd-408b-b794-24dfdad15b2d">
+            <annotation></annotation>
+            <name>Result Field: exception</name>
+            <fieldName>exception</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0f6a9422-6c6e-496f-a6d8-9371bfdb4f96">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>returnCode</contextKey>
+          <expression id="bbaf46d8-b4f7-4c99-b9e3-d56504414b93">
+            <annotation></annotation>
+            <name>Result Field: returnCode</name>
+            <fieldName>returnCode</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="4df0ab22-5a38-4b29-839b-3a6570e3ca1c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>sessionId</contextKey>
+          <expression id="ed4e1098-84e8-4666-a153-42f3d767d2e9">
+            <annotation></annotation>
+            <name>Result Field: sessionId</name>
+            <fieldName>sessionId</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fb1f5f11-beeb-413e-822c-b91a1cf509f1">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>max</contextKey>
+          <expression id="876fdf68-63e6-46cc-b24d-b0e834e6320c">
+            <annotation></annotation>
+            <name>Input: max</name>
+            <fieldName>max</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="055b355f-ff78-4abf-b91b-3b2423603fd4">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>min</contextKey>
+          <expression id="2a383edf-e39d-4ea0-9a20-c85ba88cc895">
+            <annotation></annotation>
+            <name>Input: min</name>
+            <fieldName>min</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="67872748-0bd4-491e-8958-3d31279a846f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>sessionId</contextKey>
+          <expression id="448e43a3-81d9-4063-9c09-04bdd42eb6b9">
+            <annotation></annotation>
+            <name>Result Field: sessionId</name>
+            <fieldName>sessionId</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="724f99fd-b5ef-4a59-84d9-b0cdb17977e0">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>returnCode</contextKey>
+          <expression id="5c48129c-41a3-4d3c-ac9d-01a04c911c6f">
+            <annotation></annotation>
+            <name>Result Field: returnCode</name>
+            <fieldName>returnCode</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="a10d4810-fd77-463e-a5c0-0cf4ababc25c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>exception</contextKey>
+          <expression id="269888ea-fa6a-4911-be3b-b5973eec738d">
+            <annotation></annotation>
+            <name>Result Field: exception</name>
+            <fieldName>exception</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b3b8d815-1090-4bae-b5f3-eb3b8e8ac64e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>response</contextKey>
+          <expression id="d8bc85c1-043f-4437-9be5-ecd65ea68481">
+            <annotation></annotation>
+            <name>Result Field: response</name>
+            <fieldName>response</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="8aef6a3a-d982-4058-b761-b449ead8a11f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>max</contextKey>
+          <expression id="2049f826-e897-4d6f-9951-d527ef885a35">
+            <annotation></annotation>
+            <name>Input: max</name>
+            <fieldName>max</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fb386d81-078c-48b7-ad5c-b240ee4c51ed">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>min</contextKey>
+          <expression id="eb954037-88bc-44c3-b1dd-8896fdbdfc76">
+            <annotation></annotation>
+            <name>Input: min</name>
+            <fieldName>min</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
       <throttleSize>0</throttleSize>
     </step>
     <returnStep id="1b1d21ba-7c56-4aef-8506-352b826e12e9">
